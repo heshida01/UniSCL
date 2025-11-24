@@ -28,11 +28,9 @@ Feature importance and group-wise analyses highlight higher-order k-mer and phys
 - pandas
 - scikit-learn
 
-You can install all dependencies with:
+Repository structure:
 
-```bash
-pip install -r requirements.txt
-
+```
 .
 ├── data/
 │   ├── SCL_test_80.fasta       # Example test FASTA (sequences)
@@ -53,20 +51,20 @@ Data format
 1. Sequence file (--input_fasta)
 
 FASTA format (recommended):
-
+```
 >seq_0001
 ACGUGA...
 >seq_0002
 UUGC...
-
+```
 
 Or CSV with a sequence column (and optionally task, label):
-
+```
 id,sequence,task,label
 seq_0001,ACGUGA...,lncRNA,0
 seq_0002,UUGC...,mRNA,1
 ...
-
+```
 
 If task / label are present in the CSV they will be used automatically.
 
@@ -80,9 +78,9 @@ Feature selection
 UniSCL computes a rich panel of sequence-derived descriptors and then uses a random forest to select the top 120 informative features.
 
 To run feature selection:
-
+```
 python feature_selection.py
-
+```
 
 This script:
 
@@ -97,42 +95,41 @@ Saves the selected top 120 features (e.g. *_top120.csv) for UniSCL.
 Inference: predict subcellular localization with UniSCL
 
 Once you have:
-
+```
 SCL_test_80.fasta (or an equivalent sequence file)
 
 test_top120.csv (120-dim selected feature file)
 
 Trained model + scaler parameters in ./models/
-
+```
 you can run:
-
-python test.py \
-  --input_fasta ./data/SCL_test_80.fasta \
-  --input_fea   ./feature/test_top120.csv  \
-  --model_path  ./models/best_model.pt \
-  --scaler_scale ./models/scaler_scale.npy \
-  --scaler_mean ./models/scaler_mean.npy \
-  --output o.csv
-
+```
+python test.py --input_fasta ./data/SCL_test_80.fasta --input_fea ./feature/test_top120.csv --model_path  ./models/best_model.pt --scaler_scale ./models/scaler_scale.npy --scaler_mean ./models/scaler_mean.npy --output o.csv
+```
 
 Arguments
-
+```
 --input_fasta
+```
 Path to the sequence file (FASTA or CSV with a sequence column).
-
+```
 --input_fea
+```
 Path to the 120-dim feature CSV.
-
+```
 --model_path
+```
 Path to the trained UniSCL model (state_dict).
-
+```
 --scaler_mean, --scaler_scale
+```
 Paths to the stored StandardScaler parameters used during training.
 If omitted, test.py will automatically look for them in the same directory as model_path.
-
+```
 --output
+```
 Output CSV file. It contains:
-
+```
 id
 
 sequence
@@ -144,5 +141,5 @@ task
 pred_label — predicted class (0: chromatin, 1: cytoplasm, 2: extracellular exosome)
 
 prob_class_0, prob_class_1, prob_class_2 — predicted probabilities
-
+```
 On labeled data, the script also prints macro / weighted F1 and accuracy on the console.
