@@ -32,3 +32,19 @@ You can install all dependencies with:
 
 ```bash
 pip install -r requirements.txt
+
+.
+├── data/
+│   ├── SCL_test_80.fasta       # Example test FASTA (sequences)
+│   └── ...                     # Other raw / processed data
+├── feature/
+│   ├── test_top120.csv         # Example 120-dim hand-crafted feature file
+│   └── ...                     # Feature matrices
+├── models/
+│   ├── best_model.pt           # Trained UniSCL weights
+│   ├── scaler_mean.npy         # StandardScaler mean (120-dim)
+│   └── scaler_scale.npy        # StandardScaler scale (120-dim)
+├── feature_selection.py        # Random forest-based feature selection
+├── test.py                     # Inference script (no training)
+└── ...
+```
