@@ -121,7 +121,7 @@ If omitted, test.py will automatically look for them in the same directory as mo
 --output
 ```
 Output CSV file. It contains:
-
+```
 id
 
 sequence
@@ -133,6 +133,6 @@ task
 pred_label — predicted class (0: chromatin, 1: cytoplasm, 2: extracellular exosome)
 
 prob_class_0, prob_class_1, prob_class_2 — predicted probabilities
-
-On labeled data, the script also prints macro / weighted F1 and accuracy on the console.
 ```
+On labeled data, the script also prints macro / weighted F1 and accuracy on the console.
+
