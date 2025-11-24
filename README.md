@@ -8,11 +8,6 @@ Based on RNALocate v3.0, we build a curated human dataset with rigorous quality 
 - **CNN head–tail sequence embeddings** (fixed-length 5′ and 3′ segments)
 - A **shared MLP backbone** with **task-specific heads** for mRNA and lncRNA
 
-Experiments show that UniSCL achieves higher weighted and macro F1 than:
-- MLPs using only hand-crafted features
-- LSTM / Transformer encoders using only sequence embeddings
-
-Feature importance and group-wise analyses highlight higher-order k-mer and physicochemical pseudo k-mer features as major contributors, providing an interpretable view of the model’s decision basis.
 
 ---
 
