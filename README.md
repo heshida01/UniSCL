@@ -16,7 +16,7 @@ Feature importance and group-wise analyses highlight higher-order k-mer and phys
 
 ---
 
-![architecture](./architecture.jpg "UniSCL architecture")
+![architecture](https://github.com/lijingtju/UniSCL/blob/main/flowchart.jpg)
 
 ---
 
