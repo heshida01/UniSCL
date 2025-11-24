@@ -86,21 +86,13 @@ This script:
 
 Loads the full feature set.
 
-Trains a random forest classifier.
-
-Ranks features by importance.
-
-Saves the selected top 120 features (e.g. *_top120.csv) for UniSCL.
-
-Inference: predict subcellular localization with UniSCL
+Slect top 120 features based on *feature_importance_ranking.csv*.
 
 Once you have:
 ```
 SCL_test_80.fasta (or an equivalent sequence file)
 
 test_top120.csv (120-dim selected feature file)
-
-Trained model + scaler parameters in ./models/
 ```
 you can run:
 ```
@@ -129,7 +121,7 @@ If omitted, test.py will automatically look for them in the same directory as mo
 --output
 ```
 Output CSV file. It contains:
-```
+
 id
 
 sequence
@@ -141,5 +133,6 @@ task
 pred_label — predicted class (0: chromatin, 1: cytoplasm, 2: extracellular exosome)
 
 prob_class_0, prob_class_1, prob_class_2 — predicted probabilities
-```
+
 On labeled data, the script also prints macro / weighted F1 and accuracy on the console.
+```
