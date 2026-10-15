@@ -135,7 +135,7 @@ class RNAPredictDataset(Dataset):
         tail = ids[-remain:] if len(ids) > len(head) else []
         merged = head + tail
         if len(merged) < L:
-            merged += [0] * (L - len(merged))
+            merged += [4] * (L - len(merged))  # pad with N (=padding_idx); 0 would be 'A'
         return merged[:L]
 
     def __len__(self) -> int:
@@ -180,7 +180,7 @@ def collate_fn(batch: List[Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch
 
 class DilatedCNN(nn.Module):
     def __init__(self, vocab=5, emb_dim=64, channels=128,
-                 layers=4, kernel=7, dilations=(1, 2, 4, 8)):
+                 layers=3, kernel=5, dilations=(1, 2, 4, 8)):  # must match training script
         super().__init__()
         # padding_idx=4 -> N
         self.emb = nn.Embedding(vocab, emb_dim, padding_idx=4)
@@ -330,7 +330,7 @@ def main():
         ),
     )
     parser.add_argument("--batch_size", type=int, default=32)
-    parser.add_argument("--total_len", type=int, default=450)
+    parser.add_argument("--total_len", type=int, default=600)
     parser.add_argument("--seed", type=int, default=42)
 
     args = parser.parse_args()
@@ -447,8 +447,8 @@ def main():
     model = MultiTaskCNNFusion(
         feat_dim=feat_dim,
         cnn_dim=256,      # must match training script
-        dropout=0.3,      # must match training script
-        emb_dim=64,       # must match training script
+        dropout=0.2,      # must match training script
+        emb_dim=32,       # must match training script
         num_classes=3
     ).to(device)
 
