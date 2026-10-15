@@ -37,7 +37,7 @@ Repository structure:
 │   ├── best_model.pt           # Trained UniSCL weights
 │   ├── scaler_mean.npy         # StandardScaler mean (120-dim)
 │   └── scaler_scale.npy        # StandardScaler scale (120-dim)
-├── feature_selection.py        # Random forest-based feature selection
+├── select_features.py          # Random forest-based feature selection
 ├── test.py                     # Inference script (no training)
 └── ...
 ```
@@ -74,7 +74,7 @@ UniSCL computes a rich panel of sequence-derived descriptors and then uses a ran
 
 To run feature selection:
 ```
-python feature_selection.py
+python select_features.py
 ```
 
 This script:
