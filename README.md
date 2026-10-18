@@ -6,12 +6,12 @@ Based on RNALocate v3.0, we build a curated human dataset with rigorous quality 
 
 - **120 RF-selected hand-crafted features**
 - **CNN head–tail sequence embeddings** (fixed-length 5′ and 3′ segments)
-- A **shared MLP backbone** with **task-specific heads** for mRNA and lncRNA
+- A **shared CNN encoder**; its embedding is concatenated with the selected features and passed directly to **task-specific two-layer MLP heads** for mRNA and lncRNA (no shared MLP layers)
 
 
 ---
 
-![architecture](https://github.com/lijingtju/UniSCL/blob/main/flowchart.jpg)
+![architecture](flowchart.jpg)
 
 ---
 
